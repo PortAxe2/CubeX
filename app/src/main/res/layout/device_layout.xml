@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:paddingBottom="10dp">
+
+
+    <ImageView
+        android:id="@+id/Deviceimage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Device Image"/>
+
+    <RelativeLayout
+        android:id="@+id/infoSection"
+        android:layout_marginEnd="1dp"
+        android:layout_width="270dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@+id/Deviceimage"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="6dp"
+            android:text="@string/nicknameUnderline"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/battery"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Battery level:"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="8dp"
+            android:layout_below="@+id/nickname"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fillRate"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Fill Level:"
+            android:layout_alignLeft="@+id/battery"
+            android:layout_below="@+id/battery"
+            android:layout_marginTop="4dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/batteryLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_toRightOf="@+id/battery"
+            android:layout_marginLeft="6dp"
+            android:layout_alignBaseline="@+id/battery"
+            android:text="55%"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fillRateText"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_alignBaseline="@+id/fillRate"
+            android:layout_toRightOf="@id/fillRate"
+            android:layout_marginLeft="6dp"
+            android:text="Good"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/batteryIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toRightOf="@id/batteryLevel"
+            android:layout_marginLeft="8dp"
+            android:layout_alignBottom="@+id/battery" />
+
+        <ImageView
+            android:id="@+id/fillRateIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignBottom="@id/fillRate"
+            android:layout_toRightOf="@id/fillRateText"
+            android:layout_marginLeft="6dp"/>
+
+
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
