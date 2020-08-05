@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "413578826204",
+    "firebase_url": "https://cubex-bade2.firebaseio.com",
+    "project_id": "cubex-bade2",
+    "storage_bucket": "cubex-bade2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413578826204:android:1af9bef5bc626b1943bf19",
+        "android_client_info": {
+          "package_name": "com.example.CubeX"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413578826204-20366qp1edi25o2frnp8u4gic1noku9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.CubeX",
+            "certificate_hash": "6e1c0dd13770adad07d10b683ee05b2534b15adf"
+          }
+        },
+        {
+          "client_id": "413578826204-1dmbf9h2vte29brvqbvlve1urplj9hk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLhs6YkZrduBoISI26wGhdygOK9NRU5EA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413578826204-1dmbf9h2vte29brvqbvlve1urplj9hk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
