@@ -71,7 +71,7 @@ public class Homepage extends AppCompatActivity {
             R.drawable.ic_warning_24px,
             R.drawable.ic_check_circle_24px,
             R.drawable.ic_check_circle_24px};
-    String identifier[]={"ZW3hJH3hzd2ooF0wqM2o","jejgfeyuf","jowhduwa","ejhfgeuh","jihfegf"};
+    String identifier[]={"ZW3hJH3hzd2ooF0wqM2o","fefesw","jowhduwa","ejhfgeuh","jihfegf"};
 
 
     DevicesAdapter devicesAdapter;
