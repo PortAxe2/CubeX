@@ -42,7 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class Homepage extends AppCompatActivity {
+public class Homepage extends AppCompatActivity implements DevicesAdapter.SelectedDevice {
 
     //private ArrayList<Device> deviceProperties = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -116,7 +116,7 @@ public class Homepage extends AppCompatActivity {
             deviceList.add(device);
         }
 
-        devicesAdapter = new DevicesAdapter(deviceList);
+        devicesAdapter = new DevicesAdapter(deviceList, this);
 
         recyclerView.setAdapter(devicesAdapter);
 
@@ -189,7 +189,13 @@ public class Homepage extends AppCompatActivity {
     }
 
 
+    @Override
+    public void selectedDevice(Device device) {
 
+        startActivity((new Intent(Homepage.this, DeviceExpanded.class).putExtra("data", device)));
+
+
+    }
 }
 
 

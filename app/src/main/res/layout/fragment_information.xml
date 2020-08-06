@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Information">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/colorAccent"
+        android:padding="16dp"
+        android:layout_marginTop="156dp">
+
+
+        <TextView
+            android:id="@+id/Sensors"
+            android:layout_width="wrap_content"
+            android:layout_height="26sp"
+            android:text="Sensors"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:id="@+id/Sensor1"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/Sensors"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:text="Sensors 1: 12.5 cm" />
+
+        <TextView
+            android:id="@+id/Sensor2"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/Sensor1"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:text="Sensors 2: 19.5 cm" />
+
+        <TextView
+            android:id="@+id/Sensor3"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_below="@+id/Sensor2"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:text="Sensors 3: 26.5 cm" />
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

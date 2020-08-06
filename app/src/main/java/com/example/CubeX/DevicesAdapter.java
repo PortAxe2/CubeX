@@ -20,10 +20,12 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceAd
 
     private List<Device> deviceList;
     private Context context;
+    private SelectedDevice  selectedDevice;
 
 
-    public DevicesAdapter(List<Device> deviceList) {
+    public DevicesAdapter(List<Device> deviceList,SelectedDevice  selectedDevice) {
         this.deviceList = deviceList;
+        this.selectedDevice = selectedDevice;
     }
 
     @NonNull
@@ -56,9 +58,6 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceAd
         holder.batteryIcon.setImageResource(batteryIcon);
         holder.fillRateIcon.setImageResource(fillIcon);
 
-
-
-
     }
 
     @Override
@@ -66,6 +65,11 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceAd
         return deviceList.size();
     }
 
+    public interface SelectedDevice
+    {
+        void selectedDevice(Device device);
+
+    }
 
     public class DeviceAdapterVh extends RecyclerView.ViewHolder {
 
@@ -88,6 +92,13 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceAd
             nickname = itemView.findViewById(R.id.nickname);
             batteryLevel = itemView.findViewById(R.id.batteryLevel);
             fillStatus = itemView.findViewById(R.id.fillRateText);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectedDevice.selectedDevice(deviceList.get(getAdapterPosition()));
+                }
+            });
 
         }
     }

@@ -125,8 +125,9 @@
     <string name="title_activity_nav_drawer">navDrawer</string>
     <string name="title_activity_drawer_side">drawer_side</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Readings</string>
+    <string name="tab_text_2">Commands</string>
+    <string name="tab_text_3">Map</string>
     <string name="scanText">Scan your QR Code</string>
     <string name="confirmQR">Confirm</string>
     <string name="retryLabel">Retry</string>
@@ -140,4 +141,6 @@
     <string name="title_activity_device_details">DeviceDetails</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="title_activity_device_expanded">DeviceExpanded</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
