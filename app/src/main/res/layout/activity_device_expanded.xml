@@ -8,19 +8,21 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/toolbar_exp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/colorAccent"
         android:theme="?attr/actionBarTheme" />
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
-        android:layout_below="@+id/toolbar2"
+        android:layout_below="@+id/toolbar_exp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorAccent" />
+        android:background="?attr/colorPrimaryDark" />
 
 
 
@@ -28,6 +30,7 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/tabs"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </RelativeLayout>

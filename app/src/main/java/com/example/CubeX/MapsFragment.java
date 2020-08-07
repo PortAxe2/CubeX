@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.CubeX.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,9 +32,10 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            LatLng device_location = new LatLng(-34,151);
+            LatLng sydney = new LatLng(-33.900365, 35.480500);
+            googleMap.addMarker(new MarkerOptions().position(device_location).title("Marker in AUB"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(device_location));
         }
     };
 
@@ -46,6 +48,7 @@ public class MapsFragment extends Fragment {
     }
 
     @Override
+
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment =
