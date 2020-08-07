@@ -35,7 +35,6 @@ public class DeviceExpanded extends AppCompatActivity {
 
 
         toolbar = findViewById(R.id.toolbar_exp);
-        toolbar.setTitleTextColor(@);
 
         Intent intent = getIntent();
 
