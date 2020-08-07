@@ -54,7 +54,7 @@ public class Homepage extends AppCompatActivity implements DevicesAdapter.Select
 
     List<Device> deviceList = new ArrayList<>();
     String nickname[]={"X's Device","Y's Device","Z's Device","A's Device","B's Device"};
-    String fillStatus[]={"Needs Attention","Good","Needs Attention","Good","Needs Attention"};
+    String fillStatus[]={"Needs Attention","Needs Attention","Needs Attention","Good","Needs Attention"};
     int battery[]={54,67,98,24,65};
     int deviceImage[]={R.drawable.common_google_signin_btn_icon_dark,
             R.drawable.common_google_signin_btn_icon_dark,
