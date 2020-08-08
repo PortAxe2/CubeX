@@ -50,10 +50,11 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DeviceAd
         //String identifier = device.getIdentifier();
 
 
+        String euhj = String.valueOf(battery);
 
         holder.nickname.setText(nickname);
         holder.fillStatus.setText(fillStatus);
-        //holder.batteryLevel.setText(battery);
+        holder.batteryLevel.setText(euhj);
         holder.deviceImage.setImageResource(deviceImage);
         holder.batteryIcon.setImageResource(batteryIcon);
         holder.fillRateIcon.setImageResource(fillIcon);

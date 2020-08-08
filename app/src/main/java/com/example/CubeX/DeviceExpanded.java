@@ -45,11 +45,5 @@ public class DeviceExpanded extends AppCompatActivity {
 
 
         }
-
-
-
-
-
-
     }
 }

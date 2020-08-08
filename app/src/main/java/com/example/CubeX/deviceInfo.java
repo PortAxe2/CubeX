@@ -94,7 +94,7 @@ public class deviceInfo extends AppCompatActivity {
 
                         //Get the values to display
                         Location = "" + document.getData().get("location");
-                        //Battery = document.getData().get("batteryLevel");
+                        Battery = document.getLong("batteryLevel").intValue();
                         distanceSensor1 = sens1.get("distance");
                         distanceSensor2 = sens2.get("distance");
                         distanceSensor3 = sens3.get("distance");
@@ -102,7 +102,7 @@ public class deviceInfo extends AppCompatActivity {
 
                         //Output values on the screen
                         location.setText(Location);
-                        battery.setText(document.getData().get("batteryLevel") + "%");
+                        battery.setText(Battery + "%");
                         sensor1.setText("Sensor 1: " + distanceSensor1 + "cm");
                         sensor2.setText("Sensor 2: " + distanceSensor2 + "cm");
                         sensor3.setText("Sensor 3: " + distanceSensor3 + "cm");
