@@ -1,6 +1,7 @@
 package com.example.CubeX.ui.main;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -9,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.CubeX.Commands;
+import com.example.CubeX.DeviceExpanded;
+import com.example.CubeX.Homepage;
 import com.example.CubeX.Information;
 import com.example.CubeX.MapsFragment;
 import com.example.CubeX.R;
@@ -17,7 +20,15 @@ import com.example.CubeX.R;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+    String ID = null;
+
+    public void setID(String ID){this.ID = ID;}
+    public String getID(){return this.ID;}
+
+
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
@@ -26,11 +37,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+
+        Bundle bundle = new Bundle();
+
     }
 
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
+        Bundle bundle = new Bundle();
+        bundle.putString("ID", ID);
         switch(position)
         {
             case 0:
@@ -45,6 +61,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new MapsFragment();
                 break;
         }
+        fragment.setArguments(bundle);
         return  fragment;
     }
 
@@ -56,7 +73,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
+        // Show 3 total pages.
         return 3;
     }
+
 }
