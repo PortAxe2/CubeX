@@ -14,7 +14,8 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@color/colorAccent"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_arrow_back_24px"/>
 
 
     <com.google.android.material.tabs.TabLayout
@@ -22,7 +23,9 @@
         android:layout_below="@+id/toolbar_exp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark" />
+        android:background="?attr/colorPrimary"
+        app:tabTextColor="@color/colorPrimaryDark"
+        app:tabSelectedTextColor="#FFFFFF"/>
 
 
 

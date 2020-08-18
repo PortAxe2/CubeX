@@ -17,14 +17,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 import android.content.Intent;
-
-
-
-
-import org.w3c.dom.Text;
 
 public class RegisterUser extends AppCompatActivity {
 
@@ -62,15 +55,6 @@ public class RegisterUser extends AppCompatActivity {
     }
 
 
-
-
-    /*@Override
-    protected void onResume()
-    {
-        super.onResume();
-        progressBar.setVisibility(View.GONE);
-    }*/
-
     //Register button
     public void RegisterClick(final View view)
     {
@@ -82,19 +66,13 @@ public class RegisterUser extends AppCompatActivity {
         //Validation
         if(TextUtils.isEmpty(emailInput))
         {
-            //Toast.makeText(getApplicationContext(), "Enter Email", Toast.LENGTH_LONG).show();
-
             Snackbar.make(view, "Enter Email" , Snackbar.LENGTH_SHORT).show();
-
             return;
         }
 
         if(TextUtils.isEmpty(password))
         {
-            //Toast.makeText(getApplicationContext(), "Enter password", Toast.LENGTH_LONG).show();
-
             Snackbar.make(view, "Enter password", Snackbar.LENGTH_SHORT).show();
-
             return;
         }
 
@@ -102,15 +80,10 @@ public class RegisterUser extends AppCompatActivity {
                 .addOnCompleteListener(RegisterUser.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //Toast.makeText(RegisterUser.this, "createUserWithEmail:onComplete" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-
-                        //progressBar.setVisibility(View.GONE);
-
 
                         if(!task.isSuccessful())
                         {
                             Snackbar.make(view, "Authentication Failed", Snackbar.LENGTH_SHORT).show();
-
                         }
 
                         else

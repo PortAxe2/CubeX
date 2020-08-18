@@ -3,31 +3,23 @@ package com.example.CubeX;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Bundle;
-
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.zxing.Result;
-import com.google.zxing.client.android.Intents;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.widget.AdapterView;
+
 
 import android.widget.Button;
-import android.widget.ListView;
 
 import android.view.View;
 import android.widget.TextView;
@@ -41,12 +33,22 @@ public class Scanner extends AppCompatActivity {
 
     String res;
 
+    String username;
+    Boolean warningClicked = false;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference documentReference;
+    private static final String TAG = "TAG";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
+
+        username = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        documentReference = db.collection("users").document(username);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Scan your QR Code");
@@ -57,19 +59,12 @@ public class Scanner extends AppCompatActivity {
             }
         });
         toolbar.setTitleTextColor(0xFFFFFFFF);
+
+
         Button confirmButton = findViewById(R.id.button5);
-        //Button retryButton = findViewById(R.id.button6);
-
-        //retryButton.setBackgroundColor(0x808080);
-        //setSupportActionBar(toolbar);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         scannerView = findViewById(R.id.scannerView);
-
         codeScanner = new CodeScanner(this, scannerView);
-        //resultData = findViewById(R.id.resultsOfQr);
 
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
@@ -88,8 +83,7 @@ public class Scanner extends AppCompatActivity {
 
     }
 
-    public void retry_clicked(View view)
-    {
+    public void retry_clicked(View view) {
         recreate();
     }
 
@@ -100,12 +94,24 @@ public class Scanner extends AppCompatActivity {
         startActivity(new Intent(Scanner.this, Homepage.class));
     }
 
-    public void confirm_clicked(View view)
-    {
-        if(res != null)
-        {
-            Intent intent = new Intent(this, deviceInfo.class);
+    public void confirm_clicked(View view) {
+        if (res != null) {
 
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                    if (task.isSuccessful()) {
+
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+
+                        }
+                    }
+                }
+            });
+
+            Intent intent = new Intent(this, deviceInfo.class);
             Bundle bundle = new Bundle();
             bundle.putString("deviceID", res);
             intent.putExtras(bundle);
@@ -116,8 +122,7 @@ public class Scanner extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         codeScanner.startPreview();
     }

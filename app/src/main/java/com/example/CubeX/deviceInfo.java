@@ -4,38 +4,41 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.SoundPool;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
-import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
 import android.view.View;
-import android.widget.Toast;
 
 public class deviceInfo extends AppCompatActivity {
 
+
+    private static final String TAG = "Hehe";
     String Location;
+    String niname;
+    String ID;
     int Battery;
     Double distanceSensor1;
     Double distanceSensor2;
     Double distanceSensor3;
 
+    AlertDialog.Builder builder;
+
+    EditText nickname;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -54,9 +57,13 @@ public class deviceInfo extends AppCompatActivity {
         });
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
+        nickname = (EditText) findViewById(R.id.nickname);
+        builder = new AlertDialog.Builder(deviceInfo.this);
+
+
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
-        String key = bundle.getString("deviceID");
+        final String key = bundle.getString("deviceID");
 
         final TextView location = findViewById(R.id.location);
         final TextView battery = findViewById(R.id.battery);
@@ -66,6 +73,7 @@ public class deviceInfo extends AppCompatActivity {
 
 
         final DocumentReference[] docRef = {db.collection("devices").document(key)};
+        ID = key;
 
 
         final String TAG = "deviceInfo";
@@ -75,11 +83,9 @@ public class deviceInfo extends AppCompatActivity {
         docRef[0].get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if(document.exists())
-                    {
+                    if (document.exists()) {
 
                         //Declare the maps to store the values
                         Map<String, Double> sens1 = new HashMap<String, Double>();
@@ -103,27 +109,34 @@ public class deviceInfo extends AppCompatActivity {
                         //Output values on the screen
                         location.setText(Location);
                         battery.setText(Battery + "%");
-                        sensor1.setText("Sensor 1: " + distanceSensor1 + "cm");
-                        sensor2.setText("Sensor 2: " + distanceSensor2 + "cm");
-                        sensor3.setText("Sensor 3: " + distanceSensor3 + "cm");
+                        sensor1.setText("Sensor 1: " + distanceSensor1 + " cm");
+                        sensor2.setText("Sensor 2: " + distanceSensor2 + " cm");
+                        sensor3.setText("Sensor 3: " + distanceSensor3 + " cm");
 
-                    }
-
-                    else
-                    {
+                    } else {
                         //Log.d(Tag, "No such document");
                         //results.setText("No such document");
-                    }
-                }
+                        builder.setTitle("Nonexistent device")
+                                .setMessage("Scan QR Code again")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                else
-                {
+                                        startActivity(new Intent(deviceInfo.this, Scanner.class));
+                                        finish();
+                                    }
+                                });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                } else {
                     //Log.d(Tag, "get failed with ", task.getException());
                     //results.setText("get failed with " + task.getException());
                 }
             }
         });
-
 
 
     }
@@ -134,18 +147,21 @@ public class deviceInfo extends AppCompatActivity {
         startActivity(new Intent(deviceInfo.this, Scanner.class));
     }
 
-    public void confirmClick(View view)
-    {
-        //Bundle bundle = new Bundle();
-        //bundle.putString("location", Location);
-        //bundle.putDouble("battery", Battery);
-        //bundle.putDouble("distanceSensor1", distanceSensor1);
-        //bundle.putDouble("distanceSensor2", distanceSensor2);
-        //bundle.putDouble("distanceSensor3", distanceSensor3);
+    public void confirmClick(View view) {
+
+        niname = nickname.getText().toString();
+
+        DocumentReference userRef = db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        Map<String, String> values = new HashMap<String, String>();
+        values.put("nickname",niname);
+        values.put("device_id", ID);
+
+        userRef.update("devices_registered", FieldValue.arrayUnion(values));
 
         Intent intent = new Intent(this, Homepage.class);
         startActivity(intent);
-    }
 
+    }
 
 }

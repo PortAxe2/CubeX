@@ -17,7 +17,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import android.content.Intent;
 
 public class SignIn extends AppCompatActivity {

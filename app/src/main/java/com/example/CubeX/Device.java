@@ -1,7 +1,6 @@
 package com.example.CubeX;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Device implements Serializable {
 

@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Commands">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+    <Switch
+        android:id="@+id/lockSwitch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:text="Locked"
+        android:switchPadding="@android:dimen/thumbnail_width"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-light"/>
+
+    <Switch
+        android:id="@+id/lidSwitch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lockSwitch"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:textSize="24sp"
+        android:text="Lid Closed"
+        android:fontFamily="sans-serif-light"/>
+
+    <Button
+        android:id="@+id/turnon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/lidSwitch"
+        android:layout_alignLeft="@+id/lidSwitch"
+        android:layout_marginTop="16dp"
+        android:onClick="onClick"
+        android:text="TURN ON" />
+
+    <Button
+        android:id="@+id/turnoff"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@id/turnon"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/turnon"
+        android:onClick="onClick"
+        android:text="TURN OFF" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/Red"
+        android:layout_marginTop="200dp"
+        android:text="Delete Device"
+        android:textSize="24sp"
+        android:layout_below="@+id/turnon"/>
+
+
+</RelativeLayout>

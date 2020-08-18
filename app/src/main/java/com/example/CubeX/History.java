@@ -3,35 +3,20 @@ package com.example.CubeX;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Commands#newInstance} factory method to
+ * Use the {@link History#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Commands extends Fragment implements View.OnClickListener {
+public class History extends Fragment {
 
-
-    Switch lockSwitch;
-    Switch lidSwitch;
-    Button turnOff;
-    Button turnOn;
-    String ID;
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    RecyclerView recyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +27,7 @@ public class Commands extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
-    public Commands() {
+    public History() {
         // Required empty public constructor
     }
 
@@ -52,11 +37,11 @@ public class Commands extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Commands.
+     * @return A new instance of fragment History.
      */
     // TODO: Rename and change types and number of parameters
-    public static Commands newInstance(String param1, String param2) {
-        Commands fragment = new Commands();
+    public static History newInstance(String param1, String param2) {
+        History fragment = new History();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,45 +56,14 @@ public class Commands extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view = inflater.inflate(R.layout.fragment_commands, container, false);
-        ID = getArguments().getString("ID");
-
-        final DocumentReference documentReference = db.collection("devices").document(ID);
-
-        turnOn = (Button) view.findViewById(R.id.turnon);
-        turnOff = (Button) view.findViewById(R.id.turnoff);
-        turnOn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                documentReference.update("Locked", true);
-            }
-        });
-
-        turnOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                documentReference.update("Locked", false);
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_history, container, false);
 
         return view;
-
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-
-
     }
 }
