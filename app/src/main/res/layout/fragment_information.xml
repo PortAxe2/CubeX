@@ -182,26 +182,9 @@
                 android:background="@color/colorPrimaryDark"
                 android:padding="16dp"
                 android:layout_below="@id/switchLock"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="16dp"/>
 
-                />
 
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:background="@drawable/rounded_stroke"
-                android:layout_marginTop="16dp"
-                android:layout_below="@id/separator2"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/calendarView"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:padding="16dp"
-                android:background="@drawable/rounded_stroke"/>
 
         </RelativeLayout>
 

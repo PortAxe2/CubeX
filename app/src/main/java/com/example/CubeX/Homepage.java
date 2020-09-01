@@ -227,7 +227,7 @@ public class Homepage extends AppCompatActivity implements DevicesAdapter.Select
 
     public void logoutButton(View view) {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(this, SignIn.class));
+        startActivity(new Intent(this, UserPick.class));
         finish();
     }
 

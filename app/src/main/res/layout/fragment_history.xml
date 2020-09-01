@@ -1,14 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".History">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:layout_marginTop="150dp"/>
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/CalendarHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:text="Choose Date and Time"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <View
+                android:id="@+id/separator4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_below="@+id/CalendarHistory"
+                android:layout_marginTop="1dp"/>
+
+            <CalendarView
+
+                android:id="@+id/CalendarV"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/separator4"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/TextFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_below="@id/CalendarV"
+                android:text="From"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp"
+                />
+
+            <Spinner
+                android:id="@+id/SpinnerFrom"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:spinnerMode="dropdown"
+                android:layout_toRightOf="@id/TextFrom"
+                android:layout_below="@id/CalendarV"
+                android:layout_marginTop="0dp"/>
+
+            <TextView
+                android:id="@+id/TextTo"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_toRightOf="@id/SpinnerFrom"
+                android:layout_alignBaseline="@id/TextFrom"
+                android:text="To"
+                android:layout_marginLeft="64dp"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp"
+                />
+
+            <Spinner
+                android:id="@+id/SpinnerTo"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:spinnerMode="dropdown"
+                android:layout_toRightOf="@id/TextTo"
+                android:layout_alignBottom="@id/SpinnerFrom"/>
+
+
+
+            <View
+                android:id="@+id/separator3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_below="@+id/TextFrom"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/DeviceSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:text="Choose Device"
+                android:layout_below="@+id/separator3"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <View
+                android:id="@+id/separator5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_below="@+id/DeviceSelect"
+                android:layout_marginTop="1dp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/separator5"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Sensor 1"
+                    android:textSize="18sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Sensor 2"
+                    android:textSize="18sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Sensor 3"
+                    android:textSize="18sp"/>
+
+
+            </RadioGroup>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/radioGroup"
+                android:background="@drawable/rounded_stroke"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"/>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
 
 </FrameLayout>

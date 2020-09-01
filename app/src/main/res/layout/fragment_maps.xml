@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.constraintlayout.widget.ConstraintLayout
-
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:layout_width="match_parent">
 
+    <TextView
+        android:id="@+id/LocTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:text="Location"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"/>
 
-    <fragment
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/LocTitle"
+        android:padding="8dp"
+        android:background="@drawable/rounded_stroke"/>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/address"
+        android:layout_height="250dp"
+        android:layout_marginBottom="16dp"
         tools:context=".MapsFragment" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

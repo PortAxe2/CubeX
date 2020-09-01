@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentUser == null) {
 
-            startActivity(new Intent(this, SignIn.class));
+            startActivity(new Intent(this, UserPick.class));
 
             this.finish();
         }

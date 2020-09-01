@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.CubeX.Commands;
-import com.example.CubeX.DeviceExpanded;
 import com.example.CubeX.History;
-import com.example.CubeX.Homepage;
 import com.example.CubeX.Information;
 import com.example.CubeX.MapsFragment;
 import com.example.CubeX.R;
@@ -32,7 +29,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
 
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_3};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_4,R.string.tab_text_3};
     private final Context mContext;
 
     public SectionsAdapter(Context context, FragmentManager fm) {
@@ -55,6 +52,10 @@ public class SectionsAdapter extends FragmentPagerAdapter {
                 break;
 
             case 1:
+                fragment = new History();
+                break;
+
+            case 2:
                 fragment = new MapsFragment();
                 break;
         }
@@ -71,7 +72,7 @@ public class SectionsAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 2;
+        return 3;
     }
 
 }

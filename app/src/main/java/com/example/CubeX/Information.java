@@ -5,18 +5,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.BoringLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -49,10 +50,13 @@ public class Information extends Fragment {
     Double distance1, distance2, distance3;
     Date lastUpdate1, lastUpdate2, lastUpdate3;
 
-    Boolean valuesSet = false;
+    Boolean Locked;
+    Boolean LidLocked;
 
     TextView textViewSensor1, textViewSensor2, textViewSensor3;
     TextView date1, date2, date3;
+
+    Switch lock, open_closed;
 
     public Information() {
         // Required empty public constructor
@@ -77,8 +81,6 @@ public class Information extends Fragment {
     }
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,13 +91,20 @@ public class Information extends Fragment {
 
     }
 
+
     @Override
     public synchronized View onCreateView(LayoutInflater inflater, ViewGroup container,
                                           Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information, container, false);
 
+
         ID = getArguments().getString("ID");
+        DocumentReference docRef = db.collection("devices").document(ID);
+
+        lock = (Switch) view.findViewById(R.id.switchLock);
+        open_closed = (Switch) view.findViewById(R.id.lidOpen);
+
 
         Task<DocumentSnapshot> documentReference = db.collection("devices").document(ID).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -104,6 +113,18 @@ public class Information extends Fragment {
                         if(task.isSuccessful())
                         {
                             DocumentSnapshot doc = task.getResult();
+
+                            //Fetch Lid and Lock Status
+                            Locked = (Boolean) doc.getData().get("Locked");
+                            LidLocked = (Boolean) doc.getData().get("lidClosed");
+
+                            //Set Lock
+                            if(Locked == true){lock.setChecked(true);}
+                            else{lock.setChecked(false);}
+
+                            //Set Lid
+                            if(LidLocked == true){open_closed.setChecked(true);}
+                            else{open_closed.setChecked(false);}
 
                             //Fetch data and store in maps
                             sensor1 = (Map<String, Object>) doc.getData().get("sensor1");
@@ -147,8 +168,33 @@ public class Information extends Fragment {
                     }
                 });
 
-        return view;
-    }
+        lock.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
 
+                if(lock.isChecked()){docRef.update("Locked", true);}
+                else{docRef.update("Locked", false);}
+
+            }
+
+        });
+
+        open_closed.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+
+                if(open_closed.isChecked()){docRef.update("lidClosed", true);}
+                else{docRef.update("lidClosed", false);}
+
+            }
+
+        });
+
+        return view;
+
+
+    }
 
 }
